@@ -8,29 +8,33 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hardware.url = "github:nixos/nixos-hardware";
     
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs";
-    hyprwm-contrib.url = "github:hyprwm/contrib";
-    hyprwm-contrib.inputs.nixpkgs.follows = "nixpkgs";
+    hyprland = {
+       url = "github:hyprwm/Hyprland";
+       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprwm-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-colors.url = "github:misterio77/nix-colors";
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zig.url = "github:mitchellh/zig-overlay";
-
-    nix-ld.url = "github:Mic92/nix-ld";
-    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
-
-    sops-nix.url = "github:Mic92/sops-nix";
+    nix-ld = { 
+      url = "github:Mic92/nix-ld";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, zig, nix-ld, sops-nix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-ld, ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
@@ -40,7 +44,6 @@
     in 
     {
       inherit lib;
-      nixosModules = import ./modules/nixos;
       hmModules = import ./modules/home-manager;
 
       overlays = import ./overlays { inherit inputs outputs; };
@@ -55,8 +58,6 @@
             ./hosts/deaf 
             nix-ld.nixosModules.nix-ld
             { programs.nix-ld.dev.enable = true; }
-            { programs.adb.enable = true; }
-            sops-nix.nixosModules.sops
           ];
           specialArgs = { inherit inputs outputs; };
         };
@@ -68,7 +69,6 @@
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
       };
-
     };  
   };
 }

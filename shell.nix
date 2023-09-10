@@ -24,7 +24,7 @@ with import <nixpkgs> {};
       nix
       home-manager
       git
-      zig.packages."${system}".master.latest
+      # zig.packages."${system}".master.latest
     ];
   };
 }

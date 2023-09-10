@@ -1,7 +1,7 @@
 { inputs, lib, pkgs, config, outputs, ... }:
 let
   inherit (inputs.nix-colors) colorSchemes;
-  inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) colorschemeFromPicture nixWallpaperFromScheme;
+  inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) nixWallpaperFromScheme;
 in
 {
   imports = [

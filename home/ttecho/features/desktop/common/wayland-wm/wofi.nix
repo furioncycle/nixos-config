@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 let
   wofi = pkgs.wofi.overrideAttrs (oa: {
     patches = (oa.patches or [ ]) ++ [

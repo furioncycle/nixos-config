@@ -1,4 +1,4 @@
-{ pkgs, lib, outputs, ... }: 
+{ pkgs, ... }: 
 {
   imports = [
     ./dragon.nix
