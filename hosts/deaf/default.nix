@@ -14,6 +14,8 @@
 
   services.greetd.settings.default_session.user = "ttecho";
 
+  
+  
   networking = {
     hostName = "deaf";
     networkmanager = {

@@ -11,19 +11,12 @@
     ./starship.nix
   ];
   home.packages = with pkgs; [
-    age
     bc
     bottom
-    exa
+    eza
     ripgrep
     fd
-    httpie
-    diffsitter
     jq
-    typst
     nixfmt
-    ltex-ls
-    zls
-    dafny
   ];
 }

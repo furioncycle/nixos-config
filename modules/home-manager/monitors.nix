@@ -1,7 +1,8 @@
-{ lib, ... }:
+{ lib, config, ... }:
 
 let
   inherit (lib) mkOption types;
+  cfg = config.monitors;
 in
 {
   options.monitors = mkOption {

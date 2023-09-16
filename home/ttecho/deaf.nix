@@ -2,7 +2,6 @@
   imports = [
     ./global
     ./features/desktop/hyprland
-    ./features/desktop/wireless
     ./features/cli
   ];
 

@@ -2,7 +2,7 @@
 let
   inherit (lib) mkIf;
   hasPackage = pname: lib.any (p: p ? pname && p.pname == pname) config.home.packages;
-  # hasRipgrep = hasPackage "ripgrep";
+  hasRipgrep = hasPackage "ripgrep";
   hasExa = hasPackage "exa";
   hasNeomutt = config.programs.neomutt.enable;
   hasShellColor = config.programs.shellcolor.enable;

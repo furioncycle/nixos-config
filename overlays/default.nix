@@ -1,4 +1,4 @@
-{inputs ,... }:
+{ outputs, inputs }:
 let
   addPatches = pkg: patches: pkg.overrideAttrs (oldAttrs: {
     patches = (oldAttrs.patches or [ ]) ++ patches;
@@ -23,7 +23,7 @@ in {
 
     xdg-utils-spawn-terminal = addPatches prev.xdg-utils [ ./xdg-open-spawn-terminal.diff ];
 
-    pfetch = prev.pfetch.overrideAttrs ({
+    pfetch = prev.pfetch.overrideAttrs (oldAttrs: {
       version = "unstable-2021-12-10";
       src = final.fetchFromGitHub {
         owner = "dylanaraps";
@@ -33,7 +33,6 @@ in {
       };
       # Add term option, rename de to desktop, add scheme option patches = (oldAttrs.patches or [ ]) ++ [ ./pfetch.patch ];
     });
-
 
   };
 }
